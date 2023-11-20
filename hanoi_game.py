@@ -11,7 +11,7 @@ class Disc(QLabel): #Disc class inherits from QLabel class but holds value
         self.setGeometry(x,y,w,h) #set xy coordinates and width and height
         self.setText(f"{self.val}") #put number on label
         self.setAlignment(Qt.AlignCenter) #Align Text in center
-        self.setStyleSheet("background-color: blue") #color label blue
+        self.setStyleSheet("color:white;background-color: blue") #color label blue text white
     
     def __str__(self): # to print dics, used for debugging
         return str(self.val)
@@ -19,7 +19,6 @@ class Disc(QLabel): #Disc class inherits from QLabel class but holds value
     def __lt__(self,other): # to allow less than comparisons between discs
         return self.val < other.val
         
-
 class TowersOfHanoi(QWidget): #Game pop up window
     def __init__(self,num_disc,auto):
         QWidget.__init__(self)
@@ -107,10 +106,10 @@ class TowersOfHanoi(QWidget): #Game pop up window
             if self.selected == None: # if there is not already a selected disc
                 if not all(v is None for v in self.towers[tower]): #check if tower has at least one disc on it
                     self.selected = tower # update selected tower
-                    self.towers[tower][0].setStyleSheet("background-color: red") #make top disc of selected tower red
+                    self.towers[tower][0].setStyleSheet("color:white;background-color: red") #make top disc of selected tower red
                     self.update() #update the screen
             elif self.selected == tower: #if selected same tower twice in a row
-                self.towers[self.selected][0].setStyleSheet("background-color: blue") #change top disc back to blue
+                self.towers[self.selected][0].setStyleSheet("color:white;background-color: blue") #change top disc back to blue
                 self.selected = None #deselect a tower
                 self.update() #update the screen
             #check if moving to a tower with no discs or if the top disc is smaller than the selected disc
@@ -122,7 +121,7 @@ class TowersOfHanoi(QWidget): #Game pop up window
         QApplication.processEvents() #needed for auto solving mode
         if not self.timer.isActive(): #timer starts when first move is made
             self.timer.start(1000) #timer goes up every 1 second
-        self.towers[move_from][0].setStyleSheet("background-color: blue") #make moving disc back to blue
+        self.towers[move_from][0].setStyleSheet("color:white;background-color: blue") #make moving disc back to blue
         count_none = sum(1 for item in self.towers[move_to] if item is None) #count how many Nones on tower for spacing
         new_x = 90 - (self.towers[move_from][0].val)*10 + (200 * move_to)  
         new_y = 55 * count_none
@@ -153,6 +152,7 @@ class Menu(QWidget): #Main Menu Window
         label1 = QLabel(self) #Welcome Message Label
         label1.move(50, 30) 
         label1.setText("Welcome to Towers of Hanoi!")
+        
         
         label2 = QLabel(self) # disc select label
         label2.move(50,50)
