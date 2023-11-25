@@ -13,7 +13,7 @@ class Disc(QLabel): #Disc class inherits from QLabel class but holds value
         self.setAlignment(Qt.AlignCenter) #Align Text in center
         self.setStyleSheet("color:white;background-color: blue") #color label blue text white
     
-    def __str__(self): # to print dics, used for debugging
+    def __str__(self): # to print discs, used for debugging
         return str(self.val)
     
     def __lt__(self,other): # to allow less than comparisons between discs
